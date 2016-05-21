@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import Google
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
+    func application(application: UIApplication,
+                     openURL url: NSURL, options: [String: AnyObject]) -> Bool {
+        return GIDSignIn.sharedInstance().handleURL(url,
+            sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String,
+                   annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+    }
+    
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // Initialize sign-in
+        
         return true
     }
 
